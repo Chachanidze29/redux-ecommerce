@@ -21,8 +21,6 @@ const ProductList = () => {
     const error = useSelector(selectProductItemsError);
     const dispatch = useDispatch();
 
-    const cart = useSelector(selectCartItems);
-
     useEffect(()=>{
         dispatch(fetchProducts());
     },[dispatch])

@@ -9,6 +9,8 @@ const NavContainer = styled.div`
     background-color: cornflowerblue;
     border-bottom-left-radius: 10%;
     border-bottom-right-radius: 10%;
+    position: sticky;
+    top: 0;
 `
 
 export default NavContainer;
