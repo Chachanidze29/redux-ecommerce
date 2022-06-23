@@ -7,11 +7,6 @@ export const selectProductItems = createSelector(
     productState => productState.products
 )
 
-export const selectProductItemsLoading = createSelector(
-    [selectProductState],
-    productState => productState.loading
-)
-
 export const selectProductItemsError = createSelector(
     [selectProductState],
     productState => productState.error

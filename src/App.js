@@ -5,7 +5,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Header from "./components/header/Header";
 
-function App() {
+const App = ()=> {
     return (
         <Routes>
             <Route element={<Header/>}>

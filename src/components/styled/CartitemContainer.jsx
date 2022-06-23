@@ -6,11 +6,6 @@ const CartItemContainer = styled.div`
     align-items: center;
     margin: 1rem;
   
-    img {
-        flex-basis: 40%;
-        max-width: 20%;
-    }
-  
     div {
         flex-basis: 40%;
     }

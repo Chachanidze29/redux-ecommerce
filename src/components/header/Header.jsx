@@ -1,11 +1,8 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
-import MainContainer from "../styled/MainContainer";
-import NavContainer from "../styled/NavContainer";
-import LinkContainer from "../styled/LinkContainer";
 import {selectCartItemsCount} from "../../redux/cart/cartItems.selector";
 import {useSelector} from "react-redux";
-import CartLinkContainer from "../styled/CartLinkContainer";
+import {CartLinkContainer, LinkContainer, MainContainer, NavContainer} from "../styled";
 
 const Header = ()=> {
     const count = useSelector(selectCartItemsCount);

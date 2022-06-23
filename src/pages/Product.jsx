@@ -1,34 +1,34 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import axios from "axios";
-import Loader from "../components/loader/Loader";
-import ProductContainer from "../components/styled/ProductContainer";
-import ProductDescriptionContainer from "../components/styled/ProductDescriptionContainer";
-import ButtonContainer from "../components/styled/ButtonContainer";
 import {useDispatch} from "react-redux";
 import {ADD_ITEM} from "../redux/cart/CartSlice";
+import {ButtonContainer, ProductContainer, ProductDescriptionContainer} from "../components/styled";
+import Loader from "../components/loader/Loader";
 
 const Product = () => {
     const {productId} = useParams();
-    const [product,setProduct] = useState([]);
-    const [loading,setLoading] = useState(true);
     const dispatch = useDispatch();
+    const [error,setError] = useState('');
+    const [product,setProduct] = useState([]);
 
     useEffect(()=>{
         const getProduct = async ()=> {
             const response = await axios.get(`https://fakestoreapi.com/products/${productId}`);
             setProduct(response.data);
-            setLoading(false);
         }
 
-        getProduct();
+        getProduct().catch(err=>setError(err.message));
     },[productId])
 
     return (
         <div>
             {
-                loading ?
+                    product.length === 0 ?
                     <Loader/>
+                    :
+                    error ?
+                    <h1 style={{textAlign:"center"}}>{error}</h1>
                     :
                     (
                         <ProductContainer>

@@ -3,20 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     selectProductItems,
     selectProductItemsError,
-    selectProductItemsLoading
 } from "../redux/products/products.selector";
-import {Link} from "react-router-dom";
 import {fetchProducts} from "../redux/products/ProductsSlice";
-import ProductListContainer from "../components/styled/ProductListContainer";
 import Loader from "../components/loader/Loader";
-import ProductContainer from "../components/styled/ProductContainer";
-import ProductInfoContainer from "../components/styled/ProductInfoContainer";
-import ButtonContainer from "../components/styled/ButtonContainer";
-import {ADD_ITEM} from "../redux/cart/CartSlice";
+import {ProductListContainer} from "../components/styled";
+import ProductItem from "../components/productItem/ProductItem";
 
 const ProductList = () => {
     const products = useSelector(selectProductItems);
-    const isLoading = useSelector(selectProductItemsLoading);
     const error = useSelector(selectProductItemsError);
     const dispatch = useDispatch();
 
@@ -30,22 +24,10 @@ const ProductList = () => {
                 error ?
                     <h1>Error {error}</h1>
                     :
-                    isLoading ?
+                    products.length === 0 ?
                         <Loader/>
                         :
-                        products.map(product => (
-                            <ProductContainer key={product.id}>
-                                <Link to={`/products/${product.id}`}>
-                                        <p>{product.title}</p>
-                                        <img src={product.image}/>
-                                        <ProductInfoContainer>
-                                            <p>{product.description}</p>
-                                            <p>${product.price}</p>
-                                        </ProductInfoContainer>
-                                </Link>
-                                <ButtonContainer onClick={()=>dispatch(ADD_ITEM(product))}>Add To Cart</ButtonContainer>
-                            </ProductContainer>
-                        ))
+                        products.map(product => <ProductItem key={product.id} product={product} />)
             }
         </ProductListContainer>
     )
